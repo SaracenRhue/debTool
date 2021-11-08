@@ -14,7 +14,6 @@ enable_root () {
     echo "type 'su' to switch to root user"
 }
 
-
 i_anonsurf () {
     git clone https://github.com/Und3rf10w/kali-anonsurf.git
     cd kali-anonsurf
@@ -31,6 +30,7 @@ repos () {
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 }
+
 i_zoom () {
     wget https://zoom.us/client/latest/zoom_amd64.deb
     sudo apt install ./zoom_amd64.deb
@@ -50,8 +50,6 @@ aliases () {
     echo "alias s='apt search'" >> /../home/saracen/.zshrc
     echo "neofetch" >> ~/.zshrc
     echo "neofetch" >> /../home/saracen/.zshrc
-    echo "alias tool='sudo bash debTool.sh'" >> ~/.zshrc
-    echo "alias tool='sudo bash debTool.sh'" >> /../home/saracen/.zshrc
     source >> ~/.zshrc
     source >> /../home/saracen/.zshrc
 
@@ -65,6 +63,7 @@ quit () {
 
 r_packages(){
     PKGS=(
+    'yelp'
     'python'
     'firefox-esr'
     'chromium'
@@ -82,7 +81,6 @@ r_packages(){
 i_packages() {
     PKGS=(
     'wget'
-    'git'
     'vim'
     'arc'
     'tor'
@@ -100,9 +98,12 @@ i_packages() {
     'npm'
     'python3'
     'pip'
-    'gnome-tweak-tools'
+    'zsh'
+    'zsh-autosuggestions'
+    'zsh-syntax-highlighting'
+    'gnome-tweaks'
     'gnome-shell-extensions'
-    'gnome-chrome-shell'
+    'krusader'
     'brave-browser'
     'code'
     )
@@ -111,6 +112,26 @@ i_packages() {
         sudo apt install $PKG -y
     done
 }
+
+default_zsh() {
+    chsh -s $(which zsh)
+}
+
+i_pip_mods(){
+    PKGS=(
+    'pyenv'
+    'numpy'
+    'openpyxl'
+    'pygame'
+    'requests'
+    'selenium'
+    'pyautogui'
+    'beautifulsoup4'
+    )
+
+    for PKG in "${PKGS[@]}"; do
+        pip install $PKG
+    done
 
 while :
 do
@@ -132,7 +153,9 @@ EOF
              r_packages
              i_anonsurf
              i_zoom
-             aliases 
+            # aliases
+             default_zsh
+             i_pip_mods
              ;;
         "0") quit && break ;;
      * )  echo "invalid option" ;;
