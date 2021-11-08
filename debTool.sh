@@ -100,7 +100,7 @@ i_packages() {
     'npm'
     'python3'
     'pip'
-    'gnome-tools'
+    'gnome-tweak-tools'
     'gnome-shell-extensions'
     'gnome-chrome-shell'
     'brave-browser'
