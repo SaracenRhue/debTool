@@ -3,8 +3,8 @@
 # curUsr=$(whoami)
 
 update () {
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
+    sudo apt update -y
+    sudo apt upgrade -y
     sudo apt autoremove -y
 }
 
@@ -90,6 +90,7 @@ i_packages() {
     'arc'
     'tor'
     'gparted'
+    'htop'
     'neofetch'
     'net-tools'
     'nextcloud-desktop'
