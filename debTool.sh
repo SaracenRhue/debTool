@@ -154,7 +154,7 @@ EOF
              r_packages
              i_anonsurf
              i_zoom
-            # aliases
+             aliases
              default_zsh
              i_pip_mods
              ;;
