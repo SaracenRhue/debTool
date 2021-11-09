@@ -119,10 +119,10 @@ default_zsh() {
 
 i_pip_mods(){
     PKGS=(
+    'eel'
     'pyenv'
     'numpy'
     'openpyxl'
-    'pygame'
     'requests'
     'selenium'
     'pyautogui'
@@ -132,6 +132,7 @@ i_pip_mods(){
     for PKG in "${PKGS[@]}"; do
         pip install $PKG
     done
+}
 
 while :
 do
