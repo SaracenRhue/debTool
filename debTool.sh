@@ -67,8 +67,8 @@ zsh_aliases () {
     echo "alias s='apt search'" >> /../home/saracen/.zshrc
     echo "neofetch" >> ~/.zshrc
     echo "neofetch" >> /../home/saracen/.zshrc
-    source >> ~/.zshrc
-    source >> /../home/saracen/.zshrc
+#    source >> ~/.zshrc
+#    source >> /../home/saracen/.zshrc
     echo "done..."
 }
 
