@@ -36,6 +36,24 @@ i_zoom () {
     sudo rm -fr zoom_amd64.deb
 }
 
+bash_aliases () {
+    echo "alias python=python3" >> ~/.bashrc
+    echo "alias python=python3" >> /../home/saracen/.bashrc
+    echo "alias u='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt autoremove -y'" >> ~/.bashrc
+    echo "alias u='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt autoremove -y'" >> /../home/saracen/.bashrc
+    echo "alias i='sudo apt install'" >> ~/.bashrc
+    echo "alias i='sudo apt install'" >> /../home/saracen/.bashrc
+    echo "alias r='sudo apt remove'" >> ~/.bashrc
+    echo "alias r='sudo apt remove'" >> /../home/saracen/.bashrc
+    echo "alias s='apt search'" >> ~/.bashrc
+    echo "alias s='apt search'" >> /../home/saracen/.bashrc
+    echo "neofetch" >> ~/.bashrc
+    echo "neofetch" >> /../home/saracen/.bashrc
+    source >> ~/.bashrc
+    source >> /../home/saracen/.bashrc
+    echo "done..."
+}
+
 zsh_aliases () {
     echo "alias python=python3" >> ~/.zshrc
     echo "alias python=python3" >> /../home/saracen/.zshrc
@@ -51,7 +69,6 @@ zsh_aliases () {
     echo "neofetch" >> /../home/saracen/.zshrc
     source >> ~/.zshrc
     source >> /../home/saracen/.zshrc
-
     echo "done..."
 }
 
@@ -76,12 +93,13 @@ r_gnome_packs(){
     sudo apt autoremove -y
 }
 
-i_packages() {
+basic_packages() {
     sudo apt remove python -y
-    sudo apt install wget arc tor gparted htop neofetch net-tools nextcloud-desktop terminator thunderbird timeshift celluloid tree nodejs npm python3 pip krusader brave-browser code zsh zsh-autosuggestions zsh-syntax-highlighting gnome-tweaks gnome-shell-extensions gnome-shell-extension-dash-to-dock -y
+    sudo apt install wget arc tor gparted htop neofetch net-tools nextcloud-desktop terminator thunderbird timeshift celluloid tree nodejs npm python3 pip krusader brave-browser code gnome-tweaks gnome-shell-extensions gnome-shell-extension-dash-to-dock -y
 }
 
 default_zsh() {
+    sudo apt install zsh zsh-autosuggestions zsh-syntax-highlighting -y
     chsh -s $(which zsh)
 }
 
@@ -95,7 +113,10 @@ do
     cat<<EOF
     Please enter your choice:
 
-     (1) full setup
+     (1) basic packages
+     (2) setup zsh
+     (3) zsh aliases
+     (4) bash aliases
      (0) quit
     ------------------------------
 EOF
@@ -105,14 +126,14 @@ EOF
              update
              repos
              update
-             i_packages
-             r_gnome_packs
+             basic_packages
              i_anonsurf
              i_zoom
-             zsh_aliases
-             default_zsh
              i_pip_mods
              ;;
+        "2") setup_zsh ;;
+        "3") zsh_aliases ;;
+        "4") bash_aliases ;;
         "0") quit && break ;;
      * )  echo "invalid option" ;;
     esac
