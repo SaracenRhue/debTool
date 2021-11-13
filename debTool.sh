@@ -106,6 +106,7 @@ i_packages() {
     'krusader'
     'brave-browser'
     'code'
+    'gnome-shell-extension-dash-to-dock' # dash to dock gnoome shell extension
     )
 
     for PKG in "${PKGS[@]}"; do
