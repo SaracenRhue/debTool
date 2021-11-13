@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# curUsr=$(whoami)
 
 update () {
     sudo apt update -y
@@ -37,7 +36,7 @@ i_zoom () {
     sudo rm -fr zoom_amd64.deb
 }
 
-aliases () {
+zsh_aliases () {
     echo "alias python=python3" >> ~/.zshrc
     echo "alias python=python3" >> /../home/saracen/.zshrc
     echo "alias u='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt autoremove -y'" >> ~/.zshrc
@@ -61,10 +60,9 @@ quit () {
     exit
 }
 
-r_packages(){
+r_gnome_packs(){
     PKGS=(
     'yelp'
-    'python'
     'firefox-esr'
     'chromium'
     'totem'
@@ -79,39 +77,8 @@ r_packages(){
 }
 
 i_packages() {
-    PKGS=(
-    'wget'
-    'vim'
-    'arc'
-    'tor'
-    'gparted'
-    'htop'
-    'neofetch'
-    'net-tools'
-    'nextcloud-desktop'
-    'terminator'
-    'thunderbird'
-    'timeshift'
-    'celluloid'
-    'tree'
-    'nodejs'
-    'npm'
-    'python3'
-    'pip'
-    'zsh'
-    'zsh-autosuggestions'
-    'zsh-syntax-highlighting'
-    'gnome-tweaks'
-    'gnome-shell-extensions'
-    'krusader'
-    'brave-browser'
-    'code'
-    'gnome-shell-extension-dash-to-dock' # dash to dock gnoome shell extension
-    )
-
-    for PKG in "${PKGS[@]}"; do
-        sudo apt install $PKG -y
-    done
+    sudo apt remove python -y
+    sudo apt install wget arc tor gparted htop neofetch net-tools nextcloud-desktop terminator thunderbird timeshift celluloid tree nodejs npm python3 pip krusader brave-browser code zsh zsh-autosuggestions zsh-syntax-highlighting gnome-tweaks gnome-shell-extensions gnome-shell-extension-dash-to-dock -y
 }
 
 default_zsh() {
@@ -119,20 +86,7 @@ default_zsh() {
 }
 
 i_pip_mods(){
-    PKGS=(
-    'eel'
-    'pyenv'
-    'numpy'
-    'openpyxl'
-    'requests'
-    'selenium'
-    'pyautogui'
-    'beautifulsoup4'
-    )
-
-    for PKG in "${PKGS[@]}"; do
-        pip install $PKG
-    done
+    pip install eel pyenv numpy openpyxl requests selenium pyautogui beautifulsoup4
 }
 
 while :
@@ -152,10 +106,10 @@ EOF
              repos
              update
              i_packages
-             r_packages
+             r_gnome_packs
              i_anonsurf
              i_zoom
-             aliases
+             zsh_aliases
              default_zsh
              i_pip_mods
              ;;
