@@ -95,7 +95,7 @@ r_gnome_packs(){
 
 basic_packages() {
     sudo apt remove python -y
-    sudo apt install - < packages.txt
+    sudo apt install wget arc tor gparted htop neofetch net-tools nextcloud-desktop terminator thunderbird timeshift celluloid tree nodejs npm python3 pip krusader brave-browser code
 }
 
 default_zsh() {
