@@ -105,7 +105,7 @@ default_zsh() {
 
 
 setup_virt_manager() {
-    sudo apt install virt-manager qemu vde2 dnsmasq bridge-utils openbsd-netcat edk2-ovmf swtpmr iptables -y
+    sudo apt install virt-manager -y
     sudo systemctl enable libvirtd.service
     sudo systemctl start libvirtd.service
     sudo usermod -a -G libvirt $USER
@@ -121,6 +121,7 @@ do
      (2) setup zsh
      (3) zsh aliases
      (4) bash aliases
+     (9) setup virt-manager
      (0) quit
     ------------------------------
 EOF
@@ -137,6 +138,7 @@ EOF
         "2") setup_zsh ;;
         "3") zsh_aliases ;;
         "4") bash_aliases ;;
+        "9") setup virt-manager ;;
         "0") quit && break ;;
      * )  echo "invalid option" ;;
     esac
