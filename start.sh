@@ -95,7 +95,7 @@ r_gnome_packs(){
 
 basic_packages() {
     sudo apt remove python -y
-    sudo apt install wget arc tor gparted htop neofetch net-tools nextcloud-desktop terminator thunderbird timeshift celluloid tree nodejs npm python3 pip krusader brave-browser code -y
+    sudo apt install - < packages.txt
 }
 
 default_zsh() {
@@ -103,8 +103,12 @@ default_zsh() {
     chsh -s $(which zsh)
 }
 
-i_pip_mods(){
-    pip install eel pyenv numpy openpyxl requests selenium pyautogui beautifulsoup4
+
+setup_virt_manager() {
+    sudo apt install virt-manager qemu vde2 dnsmasq bridge-utils openbsd-netcat edk2-ovmf swtpmr iptables -y
+    sudo systemctl enable libvirtd.service
+    sudo systemctl start libvirtd.service
+    sudo usermod -a -G libvirt $USER
 }
 
 while :
@@ -129,7 +133,6 @@ EOF
              basic_packages
              i_anonsurf
              i_zoom
-             i_pip_mods
              ;;
         "2") setup_zsh ;;
         "3") zsh_aliases ;;
