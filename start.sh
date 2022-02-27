@@ -111,6 +111,25 @@ setup_virt_manager() {
     sudo usermod -a -G libvirt $USER
 }
 
+setup_docker(){
+    sudo apt install curl
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    sudo usermod -aG docker $USER
+    sudo apt install docker-compose -y
+    sudo systemctl enable docker
+    source ~/.bashrc
+    docker volume create portainer_data
+    docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 --name portainer \
+    --restart=always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v portainer_data:/data \
+    portainer/portainer-ce
+    
+   
+
+}
+
 while :
 do
     clear
@@ -121,6 +140,7 @@ do
      (2) setup zsh
      (3) zsh aliases
      (4) bash aliases
+     (8) setup docker
      (9) setup virt-manager
      (0) quit
     ------------------------------
@@ -138,6 +158,7 @@ EOF
         "2") setup_zsh ;;
         "3") zsh_aliases ;;
         "4") bash_aliases ;;
+        "8") setup_docker ;;
         "9") setup virt-manager ;;
         "0") quit && break ;;
      * )  echo "invalid option" ;;
