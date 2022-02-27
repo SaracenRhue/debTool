@@ -112,7 +112,7 @@ setup_virt_manager() {
 }
 
 setup_docker(){
-    sudo apt install curl
+    sudo apt install curl -y
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh get-docker.sh
     sudo usermod -aG docker $USER
@@ -125,9 +125,6 @@ setup_docker(){
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data \
     portainer/portainer-ce
-    
-   
-
 }
 
 while :
